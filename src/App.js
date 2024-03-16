@@ -13,7 +13,7 @@ function App() {
     const [isLoading, setIsLoading] = useState(true);
     useEffect(() => {
         fetch(
-            '/macros/s/AKfycbxLWnFqfeybjfY_6rTu1EQBHsi4q59XsdWGuu0UaSkbcXnLfS09-snjxWP-NP90HiUa/exec'
+            'https://script.google.com/macros/s/AKfycbxLWnFqfeybjfY_6rTu1EQBHsi4q59XsdWGuu0UaSkbcXnLfS09-snjxWP-NP90HiUa/exec'
         )
             .then((response) => response.json())
             .then((data) => {
