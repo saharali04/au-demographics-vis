@@ -24,8 +24,6 @@ function App() {
     }, [regionData]);
 
     const [theme, colorMode] = useMode();
-    const [isSidebar, setIsSidebar] = useState(true);
-    console.log(regionData);
 
     return (
         <ColorModeContext.Provider value={colorMode}>
@@ -33,7 +31,7 @@ function App() {
                 <CssBaseline />
                 <div className="app" dir="col">
                     <main className="content">
-                        <Topbar setIsSidebar={setIsSidebar} />
+                        <Topbar />
                         {isLoading ? (
                             <Box
                                 gridRow="span 3"

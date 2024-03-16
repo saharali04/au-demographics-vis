@@ -36,26 +36,26 @@ const Dashboard = (data) => {
     };
 
     useEffect(() => {
-        setLargeRegionPercentage(getRegionPercentage(['SW', 'SE', 'CENTRAL']));
-        setSmallRegionPercentage(
-            getRegionPercentage(['FL', 'MW', 'NE', 'WEST'])
+        setLargeRegionPercentage(
+            currData.reduce((total, curr) => {
+                if (['SW', 'SE', 'CENTRAL'].includes(curr.region))
+                    total += curr.percentage * 100;
+                return Math.round(total, 6);
+            }, 0)
         );
-        setTotalCount(getTotalCount());
+        setSmallRegionPercentage(
+            currData.reduce((total, curr) => {
+                if (['FL', 'MW', 'NE', 'WEST'].includes(curr.region))
+                    total += curr.percentage * 100;
+                return Math.round(total, 6);
+            }, 0)
+        );
+        setTotalCount(
+            currData.reduce((total, curr) => {
+                return (total += curr.count);
+            }, 0)
+        );
     }, [currData]);
-
-    function getRegionPercentage(regionList) {
-        return currData.reduce((total, curr) => {
-            if (regionList.includes(curr.region))
-                total += curr.percentage * 100;
-            return Math.round(total, 6);
-        }, 0);
-    }
-
-    function getTotalCount() {
-        return currData.reduce((total, curr) => {
-            return (total += curr.count);
-        }, 0);
-    }
 
     const [subtitle, setSubtitle] = useState('Goal Demographics');
     return (
@@ -105,7 +105,7 @@ const Dashboard = (data) => {
                         <StatBox
                             title={totalCount}
                             subtitle={
-                                subtitle != 'All Applicant Demographics'
+                                subtitle !== 'All Applicant Demographics'
                                     ? 'Total Participants'
                                     : 'Total Applicants'
                             }
@@ -283,7 +283,7 @@ const Dashboard = (data) => {
                                     fontWeight="600"
                                     color={colors.grey[100]}
                                 >
-                                    {subtitle != 'All Applicant Demographics'
+                                    {subtitle !== 'All Applicant Demographics'
                                         ? 'Participants'
                                         : 'Applicants'}{' '}
                                     By Region
@@ -294,7 +294,7 @@ const Dashboard = (data) => {
                                     color={colors.greenAccent[500]}
                                 >
                                     {totalCount}{' '}
-                                    {subtitle != 'All Applicant Demographics'
+                                    {subtitle !== 'All Applicant Demographics'
                                         ? 'Participants'
                                         : 'Applicants'}
                                 </Typography>
