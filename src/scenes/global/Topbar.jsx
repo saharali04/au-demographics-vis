@@ -14,7 +14,7 @@ const Topbar = () => {
             justifyContent="flex-end"
             paddingX={2}
             paddingY={1}
-            gridRow={2}
+            gridRow={4}
         >
             {/* ICONS */}
             <Box display="flex">

@@ -77,6 +77,8 @@ const Dashboard = (data) => {
                         label="Data"
                         onChange={handleChange}
                         defaultValue={0}
+                        size="medium"
+                        sx={{ fontSize: 'large' }}
                     >
                         <MenuItem value={0}>Goal Demographics</MenuItem>
                         <MenuItem value={1}>All Applicants</MenuItem>
@@ -107,7 +109,7 @@ const Dashboard = (data) => {
                             subtitle={
                                 subtitle !== 'All Applicant Demographics'
                                     ? 'Total Participants'
-                                    : 'Total Applicants'
+                                    : 'Total Applications'
                             }
                             progress="1.0"
                             icon={
@@ -198,17 +200,18 @@ const Dashboard = (data) => {
                     </Box>
                     {/* ROW 2 */}
                     <Box
-                        gridColumn="span 8"
-                        gridRow="span 3"
+                        gridColumn="span 9"
+                        gridRow="span 5"
                         backgroundColor={colors.primary[400]}
                     >
                         <PieChart data={currData} />
                     </Box>
                     <Box
-                        gridColumn="span 4"
-                        gridRow="span 3"
+                        gridColumn="span 3"
+                        gridRow="span 5"
                         backgroundColor={colors.primary[400]}
                         overflow="auto"
+                        alignItems={'stretch'}
                     >
                         <Box
                             display="flex"
@@ -216,18 +219,18 @@ const Dashboard = (data) => {
                             alignItems="center"
                             borderBottom={`4px solid ${colors.primary[500]}`}
                             colors={colors.grey[100]}
-                            p="15px"
+                            p="22px"
                         >
                             <Typography
                                 color={colors.grey[100]}
-                                variant="h5"
+                                variant="h4"
                                 fontWeight="600"
                             >
                                 Region
                             </Typography>
                             <Typography
                                 color={colors.grey[100]}
-                                variant="h5"
+                                variant="h4"
                                 fontWeight="600"
                             >
                                 Count
@@ -240,22 +243,23 @@ const Dashboard = (data) => {
                                 justifyContent="space-between"
                                 alignItems="center"
                                 borderBottom={`4px solid ${colors.primary[500]}`}
-                                p="11px"
+                                paddingX="13px"
+                                paddingY="30px"
                             >
                                 <Box>
                                     <Typography
                                         color={colors.greenAccent[500]}
-                                        variant="h5"
+                                        variant="h4"
                                         fontWeight="600"
                                     >
                                         {item.region}
                                     </Typography>
                                 </Box>
-
                                 <Box
                                     backgroundColor={colors.greenAccent[500]}
                                     p="5px 10px"
                                     borderRadius="4px"
+                                    fontSize={18}
                                 >
                                     {item.count}
                                 </Box>
@@ -279,7 +283,7 @@ const Dashboard = (data) => {
                         >
                             <Box>
                                 <Typography
-                                    variant="h5"
+                                    variant="h3"
                                     fontWeight="600"
                                     color={colors.grey[100]}
                                 >
@@ -289,7 +293,7 @@ const Dashboard = (data) => {
                                     By Region
                                 </Typography>
                                 <Typography
-                                    variant="h3"
+                                    variant="h4"
                                     fontWeight="bold"
                                     color={colors.greenAccent[500]}
                                 >
@@ -311,9 +315,31 @@ const Dashboard = (data) => {
                     gridTemplateColumns="repeat(12, 1fr)"
                     gridAutoRows="140px"
                     gap="20px"
+                    justifyContent={'center'}
                 >
                     <Box
-                        gridColumn="span 6"
+                        gridColumn="span 3"
+                        backgroundColor={colors.primary[400]}
+                        display="flex"
+                        alignItems="center"
+                        justifyContent="center"
+                    >
+                        <StatBox
+                            title={300}
+                            subtitle={'Goal Applications'}
+                            progress="1.0"
+                            icon={
+                                <GroupsIcon
+                                    sx={{
+                                        color: colors.greenAccent[600],
+                                        fontSize: '26px',
+                                    }}
+                                />
+                            }
+                        />
+                    </Box>
+                    <Box
+                        gridColumn="span 3"
                         backgroundColor={colors.primary[400]}
                         display="flex"
                         alignItems="center"
@@ -334,7 +360,7 @@ const Dashboard = (data) => {
                         />
                     </Box>
                     <Box
-                        gridColumn="span 6"
+                        gridColumn="span 3"
                         backgroundColor={colors.primary[400]}
                         display="flex"
                         alignItems="center"
@@ -355,17 +381,39 @@ const Dashboard = (data) => {
                         />
                     </Box>
                     <Box
-                        gridColumn="span 8"
-                        gridRow="span 3"
+                        gridColumn="span 3"
+                        backgroundColor={colors.primary[400]}
+                        display="flex"
+                        alignItems="center"
+                        justifyContent="center"
+                    >
+                        <StatBox
+                            title="50 : 50"
+                            subtitle="Male : Female"
+                            progress={0.5}
+                            icon={
+                                <WcIcon
+                                    sx={{
+                                        color: colors.greenAccent[600],
+                                        fontSize: '26px',
+                                    }}
+                                />
+                            }
+                        />
+                    </Box>
+                    <Box
+                        gridColumn="span 9"
+                        gridRow="span 5"
                         backgroundColor={colors.primary[400]}
                     >
                         <PieChart data={currData} />
                     </Box>
                     <Box
-                        gridColumn="span 4"
-                        gridRow="span 3"
+                        gridColumn="span 3"
+                        gridRow="span 5"
                         backgroundColor={colors.primary[400]}
                         overflow="auto"
+                        alignItems={'stretch'}
                     >
                         <Box
                             display="flex"
@@ -373,18 +421,18 @@ const Dashboard = (data) => {
                             alignItems="center"
                             borderBottom={`4px solid ${colors.primary[500]}`}
                             colors={colors.grey[100]}
-                            p="15px"
+                            p="22px"
                         >
                             <Typography
                                 color={colors.grey[100]}
-                                variant="h5"
+                                variant="h4"
                                 fontWeight="600"
                             >
                                 Region
                             </Typography>
                             <Typography
                                 color={colors.grey[100]}
-                                variant="h5"
+                                variant="h4"
                                 fontWeight="600"
                             >
                                 Percentage
@@ -397,24 +445,25 @@ const Dashboard = (data) => {
                                 justifyContent="space-between"
                                 alignItems="center"
                                 borderBottom={`4px solid ${colors.primary[500]}`}
-                                p="11px"
+                                paddingX="13px"
+                                paddingY="30px"
                             >
                                 <Box>
                                     <Typography
                                         color={colors.greenAccent[500]}
-                                        variant="h5"
+                                        variant="h4"
                                         fontWeight="600"
                                     >
                                         {item.region}
                                     </Typography>
                                 </Box>
-
                                 <Box
                                     backgroundColor={colors.greenAccent[500]}
                                     p="5px 10px"
                                     borderRadius="4px"
+                                    fontSize={18}
                                 >
-                                    {Math.round(item.percentage * 100) + '%'}
+                                    {item.count + '%'}
                                 </Box>
                             </Box>
                         ))}

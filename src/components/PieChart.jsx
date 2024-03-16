@@ -15,6 +15,11 @@ const PieChart = (data) => {
             valueFormat={'>-.0%'}
             colors={{ scheme: 'set2' }}
             theme={{
+                labels: {
+                    text: {
+                        fontSize: 20,
+                    },
+                },
                 axis: {
                     domain: {
                         line: {
@@ -39,7 +44,9 @@ const PieChart = (data) => {
                 legends: {
                     text: {
                         fill: colors.grey[100],
+                        fontSize: 20,
                     },
+                    spacing: 5,
                 },
                 tooltip: {
                     container: {
@@ -64,7 +71,7 @@ const PieChart = (data) => {
                     },
                 },
             }}
-            margin={{ top: 40, right: 80, bottom: 80, left: 80 }}
+            margin={{ top: 80, right: 80, bottom: 80, left: 80 }}
             innerRadius={0.5}
             padAngle={0.7}
             cornerRadius={3}
@@ -109,9 +116,9 @@ const PieChart = (data) => {
                     anchor: 'bottom-right',
                     direction: 'column',
                     justify: false,
-                    translateX: 80,
+                    translateX: 30,
                     translateY: 56,
-                    itemsSpacing: 5,
+                    itemsSpacing: 15,
                     itemWidth: 100,
                     itemHeight: 18,
                     itemTextColor: colors.grey[100],

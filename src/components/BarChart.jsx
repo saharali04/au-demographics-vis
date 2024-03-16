@@ -19,6 +19,7 @@ const BarChart = (dataS) => {
                     legend: {
                         text: {
                             fill: colors.grey[100],
+                            fontSize: 20,
                         },
                     },
                     ticks: {
@@ -28,12 +29,14 @@ const BarChart = (dataS) => {
                         },
                         text: {
                             fill: colors.grey[100],
+                            fontSize: 20,
                         },
                     },
                 },
                 legends: {
                     text: {
                         fill: colors.grey[100],
+                        fontSize: 20,
                     },
                 },
                 tooltip: {
