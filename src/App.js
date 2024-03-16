@@ -1,25 +1,58 @@
-import logo from './logo.svg';
 import './App.css';
+import { useState, useEffect } from 'react';
+import Topbar from './scenes/global/Topbar';
+import Dashboard from './scenes/dashboard';
+import { CssBaseline, ThemeProvider } from '@mui/material';
+import { ColorModeContext, useMode } from './theme';
+import CircularProgress from '@mui/material/CircularProgress';
+import { Box } from '@mui/material';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [regionData, setRegionData] = useState([]);
+
+    const [isLoading, setIsLoading] = useState(true);
+    useEffect(() => {
+        fetch(
+            '/macros/s/AKfycbxLWnFqfeybjfY_6rTu1EQBHsi4q59XsdWGuu0UaSkbcXnLfS09-snjxWP-NP90HiUa/exec'
+        )
+            .then((response) => response.json())
+            .then((data) => {
+                setRegionData(data);
+                setIsLoading(false);
+            })
+            .catch((error) => console.error('Error fetching data:', error));
+    }, [regionData]);
+
+    const [theme, colorMode] = useMode();
+    const [isSidebar, setIsSidebar] = useState(true);
+    console.log(regionData);
+
+    return (
+        <ColorModeContext.Provider value={colorMode}>
+            <ThemeProvider theme={theme}>
+                <CssBaseline />
+                <div className="app" dir="col">
+                    <main className="content">
+                        <Topbar setIsSidebar={setIsSidebar} />
+                        {isLoading ? (
+                            <Box
+                                gridRow="span 3"
+                                sx={{
+                                    display: 'flex',
+                                    alignContent: 'center',
+                                    justifyContent: 'center',
+                                }}
+                            >
+                                <CircularProgress color="secondary" />
+                            </Box>
+                        ) : (
+                            <Dashboard data={regionData} />
+                        )}
+                    </main>
+                </div>
+            </ThemeProvider>
+        </ColorModeContext.Provider>
+    );
 }
 
 export default App;
