@@ -348,7 +348,7 @@ const Dashboard = (data) => {
                         justifyContent="center"
                     >
                         <StatBox
-                            title={300}
+                            title={415}
                             subtitle={'Goal Applications'}
                             progress="1.0"
                             icon={
