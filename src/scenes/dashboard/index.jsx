@@ -23,10 +23,10 @@ const Dashboard = (data) => {
     const [totalCount, setTotalCount] = useState();
     const [selectedValue, setSelectedValue] = useState(0);
     const subtitleMap = new Map([
-        [0, 'Goal Demographics'],
-        [1, 'All Applicant Demographics'],
-        [2, 'Camp 1 Demographics'],
-        [3, 'Camp 2 Demographics'],
+        [0, 'Goal'],
+        [1, 'All Applicants'],
+        [2, 'Camp 1'],
+        [3, 'Camp 2'],
     ]);
 
     const handleChange = (event) => {
@@ -57,7 +57,7 @@ const Dashboard = (data) => {
         );
     }, [currData]);
 
-    const [subtitle, setSubtitle] = useState('Goal Demographics');
+    const [subtitle, setSubtitle] = useState('Goal');
     return (
         <Box m="20px">
             {/* HEADER */}
@@ -67,7 +67,10 @@ const Dashboard = (data) => {
                 alignItems="flex-start"
                 flexDirection={'row'}
             >
-                <Header title="PARTICIPANT DASHBOARD" subtitle={subtitle} />
+                <Header
+                    title="PARTICIPANT DASHBOARD"
+                    subtitle={subtitle + ' Demographics'}
+                />
                 <FormControl style={{ minWidth: 200 }}>
                     <InputLabel id="demo-simple-select-label">Data</InputLabel>
                     <Select
@@ -80,7 +83,7 @@ const Dashboard = (data) => {
                         size="medium"
                         sx={{ fontSize: 'large' }}
                     >
-                        <MenuItem value={0}>Goal Demographics</MenuItem>
+                        <MenuItem value={0}>Goal Distrubtion</MenuItem>
                         <MenuItem value={1}>All Applicants</MenuItem>
                         <MenuItem value={2}>Camp 1</MenuItem>
                         <MenuItem value={3}>Camp 2</MenuItem>
@@ -89,7 +92,7 @@ const Dashboard = (data) => {
             </Box>
 
             {/* GRID & CHARTS */}
-            {subtitle !== 'Goal Demographics' ? (
+            {subtitle !== 'Goal' ? (
                 <Box
                     display="grid"
                     gridTemplateColumns="repeat(12, 1fr)"
@@ -204,7 +207,30 @@ const Dashboard = (data) => {
                         gridRow="span 5"
                         backgroundColor={colors.primary[400]}
                     >
-                        <PieChart data={currData} />
+                        <Box
+                            mt="25px"
+                            p="0 30px"
+                            display="flex "
+                            justifyContent="space-between"
+                            alignItems="center"
+                        >
+                            <Box>
+                                <Typography
+                                    variant="h3"
+                                    fontWeight="600"
+                                    color={colors.grey[100]}
+                                >
+                                    {subtitle === 'All Applicant Demographics'
+                                        ? 'All Applicant'
+                                        : subtitle}
+                                    {'  '}
+                                    Region Distribution
+                                </Typography>
+                            </Box>
+                        </Box>
+                        <Box height="700px" m="0 0 0 0">
+                            <PieChart data={currData} />
+                        </Box>
                     </Box>
                     <Box
                         gridColumn="span 3"
@@ -287,10 +313,7 @@ const Dashboard = (data) => {
                                     fontWeight="600"
                                     color={colors.grey[100]}
                                 >
-                                    {subtitle !== 'All Applicant Demographics'
-                                        ? 'Participants'
-                                        : 'Applicants'}{' '}
-                                    By Region
+                                    {subtitle}
                                 </Typography>
                                 <Typography
                                     variant="h4"
@@ -298,7 +321,7 @@ const Dashboard = (data) => {
                                     color={colors.greenAccent[500]}
                                 >
                                     {totalCount}{' '}
-                                    {subtitle !== 'All Applicant Demographics'
+                                    {subtitle !== 'All Applicants'
                                         ? 'Participants'
                                         : 'Applicants'}
                                 </Typography>
@@ -406,7 +429,26 @@ const Dashboard = (data) => {
                         gridRow="span 5"
                         backgroundColor={colors.primary[400]}
                     >
-                        <PieChart data={currData} />
+                        <Box
+                            mt="25px"
+                            p="0 30px"
+                            display="flex "
+                            justifyContent="space-between"
+                            alignItems="center"
+                        >
+                            <Box>
+                                <Typography
+                                    variant="h3"
+                                    fontWeight="600"
+                                    color={colors.grey[100]}
+                                >
+                                    Goal Region Distribution
+                                </Typography>
+                            </Box>
+                        </Box>
+                        <Box height="700px" m="0 0 0 0">
+                            <PieChart data={currData} />
+                        </Box>
                     </Box>
                     <Box
                         gridColumn="span 3"
