@@ -90,91 +90,92 @@ const Dashboard = (data) => {
                     </Select>
                 </FormControl>
             </Box>
-
             {/* GRID & CHARTS */}
-            {subtitle !== 'Goal' ? (
+            <Box
+                display="grid"
+                gridTemplateColumns="repeat(12, 1fr)"
+                gridAutoRows="140px"
+                gap="20px"
+            >
+                {/* ROW 1 */}
                 <Box
-                    display="grid"
-                    gridTemplateColumns="repeat(12, 1fr)"
-                    gridAutoRows="140px"
-                    gap="20px"
+                    gridColumn="span 3"
+                    backgroundColor={colors.primary[400]}
+                    display="flex"
+                    alignItems="center"
+                    justifyContent="center"
                 >
-                    {/* ROW 1 */}
-                    <Box
-                        gridColumn="span 3"
-                        backgroundColor={colors.primary[400]}
-                        display="flex"
-                        alignItems="center"
-                        justifyContent="center"
-                    >
-                        <StatBox
-                            title={totalCount}
-                            subtitle={
-                                subtitle !== 'All Applicant Demographics'
-                                    ? 'Total Participants'
-                                    : 'Total Applications'
-                            }
-                            progress="1.0"
-                            icon={
-                                <GroupsIcon
-                                    sx={{
-                                        color: colors.greenAccent[600],
-                                        fontSize: '26px',
-                                    }}
-                                />
-                            }
-                        />
-                    </Box>
-                    <Box
-                        gridColumn="span 3"
-                        backgroundColor={colors.primary[400]}
-                        display="flex"
-                        alignItems="center"
-                        justifyContent="center"
-                    >
-                        <StatBox
-                            title={largeRegionPercentage + '%'}
-                            subtitle="Central + SW + SE"
-                            progress={largeRegionPercentage / 100}
-                            icon={
-                                <PeopleAltIcon
-                                    sx={{
-                                        color: colors.greenAccent[600],
-                                        fontSize: '26px',
-                                    }}
-                                />
-                            }
-                        />
-                    </Box>
-                    <Box
-                        gridColumn="span 3"
-                        backgroundColor={colors.primary[400]}
-                        display="flex"
-                        alignItems="center"
-                        justifyContent="center"
-                    >
-                        <StatBox
-                            title={smallRegionPercentage + '%'}
-                            subtitle="FL + MW + NE + WEST"
-                            progress={smallRegionPercentage / 100}
-                            icon={
-                                <PeopleAltIcon
-                                    sx={{
-                                        color: colors.greenAccent[600],
-                                        fontSize: '26px',
-                                    }}
-                                />
-                            }
-                        />
-                    </Box>
+                    <StatBox
+                        title={subtitle !== 'Goal' ? totalCount : 415}
+                        subtitle={
+                            subtitle === 'Camp 1' || subtitle === 'Camp 2'
+                                ? 'Participants Attended'
+                                : subtitle === 'Goal'
+                                ? 'Application Goal'
+                                : 'Applications Received'
+                        }
+                        progress="1.0"
+                        icon={
+                            <GroupsIcon
+                                sx={{
+                                    color: colors.greenAccent[600],
+                                    fontSize: '26px',
+                                }}
+                            />
+                        }
+                    />
+                </Box>
+                <Box
+                    gridColumn="span 3"
+                    backgroundColor={colors.primary[400]}
+                    display="flex"
+                    alignItems="center"
+                    justifyContent="center"
+                >
+                    <StatBox
+                        title={largeRegionPercentage + '%'}
+                        subtitle="Central + SW + SE"
+                        progress={largeRegionPercentage / 100}
+                        icon={
+                            <PeopleAltIcon
+                                sx={{
+                                    color: colors.greenAccent[600],
+                                    fontSize: '26px',
+                                }}
+                            />
+                        }
+                    />
+                </Box>
+                <Box
+                    gridColumn="span 3"
+                    backgroundColor={colors.primary[400]}
+                    display="flex"
+                    alignItems="center"
+                    justifyContent="center"
+                >
+                    <StatBox
+                        title={smallRegionPercentage + '%'}
+                        subtitle="FL + MW + NE + WEST"
+                        progress={smallRegionPercentage / 100}
+                        icon={
+                            <PeopleAltIcon
+                                sx={{
+                                    color: colors.greenAccent[600],
+                                    fontSize: '26px',
+                                }}
+                            />
+                        }
+                    />
+                </Box>
 
-                    <Box
-                        gridColumn="span 3"
-                        backgroundColor={colors.primary[400]}
-                        display="flex"
-                        alignItems="center"
-                        justifyContent="center"
-                    >
+                <Box
+                    gridColumn="span 3"
+                    backgroundColor={colors.primary[400]}
+                    display="flex"
+                    alignItems="center"
+                    justifyContent="center"
+                >
+                    {subtitle !== 'Goal' ? (
                         <StatBox
                             title={
                                 Math.round(
@@ -200,100 +201,117 @@ const Dashboard = (data) => {
                                 />
                             }
                         />
-                    </Box>
-                    {/* ROW 2 */}
+                    ) : (
+                        <StatBox
+                            title="50 : 50"
+                            subtitle="Male : Female"
+                            progress={0.5}
+                            icon={
+                                <WcIcon
+                                    sx={{
+                                        color: colors.greenAccent[600],
+                                        fontSize: '26px',
+                                    }}
+                                />
+                            }
+                        />
+                    )}
+                </Box>
+                {/* ROW 2 */}
+                <Box
+                    gridColumn="span 9"
+                    gridRow="span 5"
+                    backgroundColor={colors.primary[400]}
+                >
                     <Box
-                        gridColumn="span 9"
-                        gridRow="span 5"
-                        backgroundColor={colors.primary[400]}
+                        mt="25px"
+                        p="0 30px"
+                        display="flex "
+                        justifyContent="space-between"
+                        alignItems="center"
                     >
-                        <Box
-                            mt="25px"
-                            p="0 30px"
-                            display="flex "
-                            justifyContent="space-between"
-                            alignItems="center"
+                        <Box>
+                            <Typography
+                                variant="h3"
+                                fontWeight="600"
+                                color={colors.grey[100]}
+                            >
+                                {subtitle === 'All Applicant Demographics'
+                                    ? 'All Applicant'
+                                    : subtitle}
+                                {'  '}
+                                Region Distribution
+                            </Typography>
+                        </Box>
+                    </Box>
+                    <Box height="700px" m="0 0 0 0">
+                        <PieChart data={currData} />
+                    </Box>
+                </Box>
+                <Box
+                    gridColumn="span 3"
+                    gridRow="span 5"
+                    backgroundColor={colors.primary[400]}
+                    overflow="auto"
+                    alignItems={'stretch'}
+                >
+                    <Box
+                        display="flex"
+                        justifyContent="space-between"
+                        alignItems="center"
+                        borderBottom={`4px solid ${colors.primary[500]}`}
+                        colors={colors.grey[100]}
+                        p="22px"
+                    >
+                        <Typography
+                            color={colors.grey[100]}
+                            variant="h4"
+                            fontWeight="600"
                         >
-                            <Box>
-                                <Typography
-                                    variant="h3"
-                                    fontWeight="600"
-                                    color={colors.grey[100]}
-                                >
-                                    {subtitle === 'All Applicant Demographics'
-                                        ? 'All Applicant'
-                                        : subtitle}
-                                    {'  '}
-                                    Region Distribution
-                                </Typography>
-                            </Box>
-                        </Box>
-                        <Box height="700px" m="0 0 0 0">
-                            <PieChart data={currData} />
-                        </Box>
+                            Region
+                        </Typography>
+                        <Typography
+                            color={colors.grey[100]}
+                            variant="h4"
+                            fontWeight="600"
+                        >
+                            {subtitle !== 'Goal' ? 'Count' : 'Goal Percentange'}
+                        </Typography>
                     </Box>
-                    <Box
-                        gridColumn="span 3"
-                        gridRow="span 5"
-                        backgroundColor={colors.primary[400]}
-                        overflow="auto"
-                        alignItems={'stretch'}
-                    >
+                    {currData.map((item, i) => (
                         <Box
+                            key={`${item.region}-${i}`}
                             display="flex"
                             justifyContent="space-between"
                             alignItems="center"
                             borderBottom={`4px solid ${colors.primary[500]}`}
-                            colors={colors.grey[100]}
-                            p="22px"
+                            paddingX="13px"
+                            paddingY="30px"
                         >
-                            <Typography
-                                color={colors.grey[100]}
-                                variant="h4"
-                                fontWeight="600"
-                            >
-                                Region
-                            </Typography>
-                            <Typography
-                                color={colors.grey[100]}
-                                variant="h4"
-                                fontWeight="600"
-                            >
-                                Count
-                            </Typography>
-                        </Box>
-                        {currData.map((item, i) => (
-                            <Box
-                                key={`${item.region}-${i}`}
-                                display="flex"
-                                justifyContent="space-between"
-                                alignItems="center"
-                                borderBottom={`4px solid ${colors.primary[500]}`}
-                                paddingX="13px"
-                                paddingY="30px"
-                            >
-                                <Box>
-                                    <Typography
-                                        color={colors.greenAccent[500]}
-                                        variant="h4"
-                                        fontWeight="600"
-                                    >
-                                        {item.region}
-                                    </Typography>
-                                </Box>
-                                <Box
-                                    backgroundColor={colors.greenAccent[500]}
-                                    p="5px 10px"
-                                    borderRadius="4px"
-                                    fontSize={18}
+                            <Box>
+                                <Typography
+                                    color={colors.greenAccent[500]}
+                                    variant="h4"
+                                    fontWeight="600"
                                 >
-                                    {item.count}
-                                </Box>
+                                    {item.region}
+                                </Typography>
                             </Box>
-                        ))}
-                    </Box>
+                            <Box
+                                backgroundColor={colors.greenAccent[500]}
+                                p="5px 10px"
+                                borderRadius="4px"
+                                fontSize={18}
+                            >
+                                {item.count}
+                                {subtitle !== 'Goal' ? '' : '%'}
+                            </Box>
+                        </Box>
+                    ))}
+                </Box>
 
-                    {/* ROW 3 */}
+                {/* ROW 3 */}
+                {subtitle !== 'Goal' ? (
                     <Box
                         gridColumn="span 12"
                         gridRow="span 3"
@@ -331,187 +349,8 @@ const Dashboard = (data) => {
                             <BarChart data={currData} />
                         </Box>
                     </Box>
-                </Box>
-            ) : (
-                <Box
-                    display="grid"
-                    gridTemplateColumns="repeat(12, 1fr)"
-                    gridAutoRows="140px"
-                    gap="20px"
-                    justifyContent={'center'}
-                >
-                    <Box
-                        gridColumn="span 3"
-                        backgroundColor={colors.primary[400]}
-                        display="flex"
-                        alignItems="center"
-                        justifyContent="center"
-                    >
-                        <StatBox
-                            title={415}
-                            subtitle={'Goal Applications'}
-                            progress="1.0"
-                            icon={
-                                <GroupsIcon
-                                    sx={{
-                                        color: colors.greenAccent[600],
-                                        fontSize: '26px',
-                                    }}
-                                />
-                            }
-                        />
-                    </Box>
-                    <Box
-                        gridColumn="span 3"
-                        backgroundColor={colors.primary[400]}
-                        display="flex"
-                        alignItems="center"
-                        justifyContent="center"
-                    >
-                        <StatBox
-                            title={largeRegionPercentage + '%'}
-                            subtitle="Central + SW + SE"
-                            progress={largeRegionPercentage / 100}
-                            icon={
-                                <PeopleAltIcon
-                                    sx={{
-                                        color: colors.greenAccent[600],
-                                        fontSize: '26px',
-                                    }}
-                                />
-                            }
-                        />
-                    </Box>
-                    <Box
-                        gridColumn="span 3"
-                        backgroundColor={colors.primary[400]}
-                        display="flex"
-                        alignItems="center"
-                        justifyContent="center"
-                    >
-                        <StatBox
-                            title={smallRegionPercentage + '%'}
-                            subtitle="FL + MW + NE + WEST"
-                            progress={smallRegionPercentage / 100}
-                            icon={
-                                <PeopleAltIcon
-                                    sx={{
-                                        color: colors.greenAccent[600],
-                                        fontSize: '26px',
-                                    }}
-                                />
-                            }
-                        />
-                    </Box>
-                    <Box
-                        gridColumn="span 3"
-                        backgroundColor={colors.primary[400]}
-                        display="flex"
-                        alignItems="center"
-                        justifyContent="center"
-                    >
-                        <StatBox
-                            title="50 : 50"
-                            subtitle="Male : Female"
-                            progress={0.5}
-                            icon={
-                                <WcIcon
-                                    sx={{
-                                        color: colors.greenAccent[600],
-                                        fontSize: '26px',
-                                    }}
-                                />
-                            }
-                        />
-                    </Box>
-                    <Box
-                        gridColumn="span 9"
-                        gridRow="span 5"
-                        backgroundColor={colors.primary[400]}
-                    >
-                        <Box
-                            mt="25px"
-                            p="0 30px"
-                            display="flex "
-                            justifyContent="space-between"
-                            alignItems="center"
-                        >
-                            <Box>
-                                <Typography
-                                    variant="h3"
-                                    fontWeight="600"
-                                    color={colors.grey[100]}
-                                >
-                                    Goal Region Distribution
-                                </Typography>
-                            </Box>
-                        </Box>
-                        <Box height="700px" m="0 0 0 0">
-                            <PieChart data={currData} />
-                        </Box>
-                    </Box>
-                    <Box
-                        gridColumn="span 3"
-                        gridRow="span 5"
-                        backgroundColor={colors.primary[400]}
-                        overflow="auto"
-                        alignItems={'stretch'}
-                    >
-                        <Box
-                            display="flex"
-                            justifyContent="space-between"
-                            alignItems="center"
-                            borderBottom={`4px solid ${colors.primary[500]}`}
-                            colors={colors.grey[100]}
-                            p="22px"
-                        >
-                            <Typography
-                                color={colors.grey[100]}
-                                variant="h4"
-                                fontWeight="600"
-                            >
-                                Region
-                            </Typography>
-                            <Typography
-                                color={colors.grey[100]}
-                                variant="h4"
-                                fontWeight="600"
-                            >
-                                Percentage
-                            </Typography>
-                        </Box>
-                        {currData.map((item, i) => (
-                            <Box
-                                key={`${item.region}-${i}`}
-                                display="flex"
-                                justifyContent="space-between"
-                                alignItems="center"
-                                borderBottom={`4px solid ${colors.primary[500]}`}
-                                paddingX="13px"
-                                paddingY="30px"
-                            >
-                                <Box>
-                                    <Typography
-                                        color={colors.greenAccent[500]}
-                                        variant="h4"
-                                        fontWeight="600"
-                                    >
-                                        {item.region}
-                                    </Typography>
-                                </Box>
-                                <Box
-                                    backgroundColor={colors.greenAccent[500]}
-                                    p="5px 10px"
-                                    borderRadius="4px"
-                                    fontSize={18}
-                                >
-                                    {item.count + '%'}
-                                </Box>
-                            </Box>
-                        ))}
-                    </Box>
-                </Box>
-            )}
+                ) : null}
+            </Box>
         </Box>
     );
 };
