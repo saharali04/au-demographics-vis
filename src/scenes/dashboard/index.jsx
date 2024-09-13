@@ -19,7 +19,6 @@ const Dashboard = (data) => {
 
     const [currData, setCurrData] = useState(data.data[0]);
     const [largeRegionPercentage, setLargeRegionPercentage] = useState();
-    const [smallRegionPercentage, setSmallRegionPercentage] = useState();
     const [totalCount, setTotalCount] = useState();
     const [selectedValue, setSelectedValue] = useState(0);
     const subtitleMap = new Map([
@@ -39,13 +38,6 @@ const Dashboard = (data) => {
         setLargeRegionPercentage(
             currData.reduce((total, curr) => {
                 if (['SW', 'SE', 'CENTRAL'].includes(curr.region))
-                    total += curr.percentage * 100;
-                return Math.round(total, 6);
-            }, 0)
-        );
-        setSmallRegionPercentage(
-            currData.reduce((total, curr) => {
-                if (['FL', 'MW', 'NE', 'WEST'].includes(curr.region))
                     total += curr.percentage * 100;
                 return Math.round(total, 6);
             }, 0)
@@ -154,9 +146,9 @@ const Dashboard = (data) => {
                     justifyContent="center"
                 >
                     <StatBox
-                        title={smallRegionPercentage + '%'}
+                        title={100 - largeRegionPercentage + '%'}
                         subtitle="FL + MW + NE + WEST"
-                        progress={smallRegionPercentage / 100}
+                        progress={(100 - largeRegionPercentage) / 100}
                         icon={
                             <PeopleAltIcon
                                 sx={{
