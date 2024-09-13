@@ -5,6 +5,17 @@ import { tokens } from '../theme';
 const BarChart = (dataS) => {
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
+
+    const colorMap = {
+        CENTRAL: '#66C2A5',
+        NE: '#FC8D62',
+        WEST: '#FFD92F',
+        MW: '#A6D854',
+        SW: '#E78AC3',
+        SE: '#8DA0CB',
+        FL: '#E5C494',
+    };
+    const getColor = (bar) => colorMap[bar.indexValue];
     return (
         <ResponsiveBar
             data={dataS.data}
@@ -68,16 +79,7 @@ const BarChart = (dataS) => {
             padding={0.3}
             valueScale={{ type: 'linear' }}
             indexScale={{ type: 'band', round: true }}
-            colors={[
-                '#66C2A5',
-                '#FC8D62',
-                '#8DA0CB',
-                '#E78AC3',
-                '#A6D854',
-                '#FFD92F',
-                '#E5C494',
-            ]}
-            colorBy="index"
+            colors={(bar) => console.log(bar) || getColor(bar)}
             defs={[
                 {
                     id: 'dots',

@@ -5,6 +5,16 @@ import { useTheme } from '@mui/material';
 const PieChart = (data) => {
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
+    const colorMap = {
+        CENTRAL: '#66C2A5',
+        NE: '#FC8D62',
+        WEST: '#FFD92F',
+        MW: '#A6D854',
+        SW: '#E78AC3',
+        SE: '#8DA0CB',
+        FL: '#E5C494',
+    };
+    const getColor = (bar) => colorMap[bar.id];
     const format = (v) => `${v}%`;
     return (
         <ResponsivePie
@@ -13,7 +23,7 @@ const PieChart = (data) => {
             value={'percentage'}
             sortByValue={true}
             valueFormat={'>-.0%'}
-            colors={{ scheme: 'set2' }}
+            colors={(bar) => console.log(bar) || getColor(bar)}
             theme={{
                 labels: {
                     text: {
